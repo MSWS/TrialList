@@ -1,0 +1,11 @@
+name: TrialList
+version: 1.0
+author: MSWS
+api-version: 1.16
+main: xyz.msws.triallist.TrialPlugin
+commands:
+  trial:
+    description: Manage the triallist
+    usage: /trial <allow|deny|list|reload>
+    aliases: [tl, triallist]
+    permission: triallist.manage
