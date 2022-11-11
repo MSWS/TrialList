@@ -6,6 +6,6 @@ main: xyz.msws.triallist.TrialPlugin
 commands:
   trial:
     description: Manage the triallist
-    usage: /trial <allow|deny|list|reload>
-    aliases: [tl, triallist]
+    usage: /trial <allow|deny|list>
+    aliases: [ tl, triallist ]
     permission: triallist.manage
