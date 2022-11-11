@@ -5,8 +5,8 @@ import xyz.msws.triallist.api.TrialConfig;
 
 public class FileTrialConfig implements TrialConfig {
     private final long duration;
-    private TrialAction action;
     private final String message;
+    private TrialAction action;
 
     public FileTrialConfig(FileConfiguration config) {
         this.duration = config.getLong("duration");

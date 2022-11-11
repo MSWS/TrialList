@@ -1,15 +1,16 @@
 package xyz.msws.triallist;
 
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
-import xyz.msws.triallist.api.TrialAPI;
-import xyz.msws.triallist.api.TrialConfig;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import xyz.msws.triallist.api.TrialAPI;
+import xyz.msws.triallist.api.TrialConfig;
 
 public class TrialPlugin extends JavaPlugin implements TrialAPI {
     private final Map<UUID, Long> times = new HashMap<>();
@@ -19,7 +20,7 @@ public class TrialPlugin extends JavaPlugin implements TrialAPI {
 
     @Override
     public void onEnable() {
-        getCommand("trial").setExecutor(new TrialCommand());
+        getCommand("trial").setExecutor(new TrialCommand(this));
 
         config = new FileTrialConfig(getConfig());
         dataFile = new File(getDataFolder(), "data.yml");

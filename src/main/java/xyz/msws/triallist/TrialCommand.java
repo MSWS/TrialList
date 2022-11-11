@@ -1,13 +1,14 @@
 package xyz.msws.triallist;
 
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import xyz.msws.triallist.api.TrialAPI;
 
-import java.util.UUID;
+import xyz.msws.triallist.api.TrialAPI;
 
 public class TrialCommand implements CommandExecutor {
     private TrialAPI plugin;
@@ -54,7 +55,13 @@ public class TrialCommand implements CommandExecutor {
                 for (UUID uuid : plugin.getTimes().keySet()) {
                     OfflinePlayer player = Bukkit.getOfflinePlayer(uuid);
                     // Convert the milliseconds left to hours and minutes
-                    long time = plugin.getTrialConfig().getTrialDuration() - (System.currentTimeMillis() - plugin.getTimes().get(uuid));
+                    long t = plugin.getTimes().get(uuid);
+                    if (t == -1) {
+                        sender.sendMessage(player.getName() + " - Permanent");
+                        continue;
+                    }
+                    long time = plugin.getTrialConfig().getTrialDuration()
+                            - (System.currentTimeMillis() - plugin.getTimes().get(uuid));
                     long hours = time / 3600000;
                     long minutes = (time % 3600000) / 60000;
                     if (time < 0)
